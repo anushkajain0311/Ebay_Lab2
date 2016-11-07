@@ -1,0 +1,257 @@
+<div ng-controller='profile' ng-init="getProfileData()">
+<div class="container">
+		<div class="row" >
+    		<div class="col-md-12">
+      			<h1>Welcome <span>{{firstname}}</span></h1>
+      		</div>
+    	</div>
+</div>
+	<div class="container">
+		<ul class="nav nav-tabs">
+  			<li class="active"><a data-toggle="tab" href="#activity">Activity</a></li>
+  			<li><a data-toggle="tab" href="#messages">Messages</a></li>
+  			<li ><a data-toggle="tab" href="#account">Account</a></li>
+		</ul>
+
+		<div class="tab-content">
+  			<div id="activity" class="tab-pane fade in active">
+    			<div class="container">
+    				<div class="col-md-2">
+    					<ul class="nav nav-pills nav-stacked">
+    						<br><li ><button class="btn btn-link" role="link"> Information</button></li>
+						      <li ><button class="btn btn-link" role="link"> Addresses</button></li>
+						      <li ><button class="btn btn-link" role="link">Communication</button></li>
+						      <li ><button class="btn btn-link" role="link"> Preference</button></li>
+						      <li ><button class="btn btn-link" role="link">Seller Dashboard</button></li>
+  						</ul>
+    				</div>
+    				<div class="col-md-10">
+          				<div class="row">
+        					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        						<br><div class="panel panel-info">
+            						<div class="panel-heading">
+            							<h3 class="panel-title">Add Products</h3>
+            						</div>
+            						<div class="panel-body">
+            							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                								<table class="table table-user-information">
+                    								<tbody>
+                    									<tr>
+                        									<td>ADD PRODUCT</td>
+                        									<td align="right"><button><a ui-sref = "save"> Add Product</a></button></td>
+                    									</tr>
+                    									
+							                    	</tbody>
+	                							</table>
+    	            						</div>
+        	      						</div>
+          							</div>
+          						</div>
+          					</div>
+          					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+        						<div class="panel panel-info">
+            						<div class="panel-heading">
+            							<h3 class="panel-title">List Products</h3>
+            						</div>
+            						<div class="panel-body" >
+            							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                								<table class="table table-user-information" >
+                    								<thead>
+     													<tr>
+													        <th>ID</th>
+       														<th>Name</th>
+   														    <th>Description</th>
+													        <th>Price</th>
+													        <th>Quantity</th>
+													        <th>Category</th>
+													        <th>Bidding</th>
+													        <th>Action</th>
+													      </tr>
+												    </thead>
+												    
+												    <tbody ng-repeat ="p in productlist">
+												      <tr >
+									                    <td>{{p.productId}}</td>
+									                    <td>{{p.productName}}</td>
+									                    <td>{{p.productDescription}}</td>
+									                    <td>${{p.productprice}}</td>
+									                    <td>{{p.productQuantity}}</td>
+									                    <td>{{p.category}}</td>
+									                    <td>{{p.bidding}}</td>
+									                    <td>                      
+									                        <a class="a-inside delete" href="/delete">Delete</a>                       
+									                    </td>
+												      </tr>
+												    </tbody>
+												</table>
+    	            						</div>
+        	      						</div>
+          							</div>
+          						</div>
+          					</div>
+          					
+          					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        						<div class="panel panel-info">
+            						<div class="panel-heading">
+            							<h3 class="panel-title">Purchase History</h3>
+            						</div>
+            						<div class="panel-body">
+            							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                								<table class="table table-user-information">
+                    								<thead>
+     													<tr>
+													        <th>ID</th>
+       														<th>Name</th>
+   														    <th>Quantity Brought</th>
+													        <th>Price</th>
+													        <th width="120px">Action</th>
+													      </tr>
+												    </thead >
+												   
+												    <tbody ng-repeat="item in purchasehistory">
+												      <tr>
+									                    <td>{{item.productId}}</td>
+									                    <td>{{item.productName}}</td>
+									                    <td>{{item.quantityneeded}}</td>
+									                    <td>${{item.productprice}}</td>
+									                    <td>                      
+									                        <a class="a-inside delete" href="#">Buy Again</a>                       
+									                    </td>
+												      </tr>
+												    </tbody>
+												    
+	                							</table>
+    	            						</div>
+        	      						</div>
+          							</div>
+          						</div>
+          					</div>
+      					</div>
+    				</div>
+    			</div>
+      		</div>      		
+			<div id="messages" class="tab-pane fade">
+    			<h3>Messages</h3>
+    				<p>Some content in menu 1.</p>
+  			</div>
+  			
+  			
+			<div id="account" class="tab-pane fade ">
+    			<div class="container">
+    				<div class="col-md-2">
+    					<ul class="nav nav-pills nav-stacked">
+    						<br><li ><button class="btn btn-link" role="link"> Information</button></li>
+						      <li ><button class="btn btn-link" role="link"> Addresses</button></li>
+						      <li ><button class="btn btn-link" role="link">Communication</button></li>
+						      <li ><button class="btn btn-link" role="link"> Preference</button></li>
+						      <li ><button class="btn btn-link" role="link">Seller Dashboard</button></li>
+  						</ul>
+    				</div>
+    				<div class="col-md-10">
+          				<div class="row">
+      						<div class="col-md-4 toppad  pull-right">
+								<p class=" text-info">Last Login:  </p>
+      						</div>
+        					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        						<div class="panel panel-info">
+            						<div class="panel-heading">
+            							<h3 class="panel-title">Account Information</h3>
+            						</div>
+            						<div class="panel-body">
+            							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                								<table class="table table-user-information">
+                    								<tbody>
+                    									<tr>
+                        									<td>First Name:</td>
+                        									<td>{{firstname}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									<tr>
+                        									<td>Last Name:</td>
+                        									<td>{{lastname}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									<tr>
+                        									<td>Birthday:</td>
+                        									<td>{{birthday}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									
+							                    	</tbody>
+	                							</table>
+    	            						</div>
+        	      						</div>
+          							</div>
+          						</div>
+          					</div>
+          					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        						<div class="panel panel-info">
+            						<div class="panel-heading">
+            							<h3 class="panel-title">Contact Information</h3>
+            						</div>
+            						<div class="panel-body">
+            							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                								<table class="table table-user-information">
+                    								<tbody>
+                    									<tr>
+                        									<td>Email ID:</td>
+                        									<td>{{email}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									<tr>
+                        									<td>Address:</td>
+                        									<td>{{address}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									<tr>
+                        									<td>Mobile NO:</td>
+                        									<td>{{phone}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                    									</tr>
+                    									
+							                    	</tbody>
+	                							</table>
+    	            						</div>
+        	      						</div>
+          							</div>
+          						</div>
+          					</div>
+    					    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">   
+          						<div class="panel panel-info">
+           							<div class="panel-heading">
+              							<h3 class="panel-title">Financial Information</h3>
+            						</div>
+            						<div class="panel-body">
+              							<div class="row">
+                							<div class=" col-md-12 col-lg-12 "> 
+                  								<table class="table table-user-information">
+                    								<tbody>
+                      									<tr>
+                       										<td>Card Number:</td>
+                        									<td>{{cardnumber}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                      									</tr>
+                      									<tr>
+                       										<td>Expires On</td>
+                        									<td>{{expires}}</td>
+                        									<td align="right"><a href="#">Edit</a></td>
+                      									</tr>
+                    								</tbody>
+								                </table>                  
+                							</div>
+              							</div>
+            						</div>
+        						</div>
+      						</div>
+    					</div>
+    				</div>
+        		</div>
+      		</div>
+    	</div>
+  	</div>
+  </div>

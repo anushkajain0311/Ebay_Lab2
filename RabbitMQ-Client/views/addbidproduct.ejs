@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title> Add Product </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel='stylesheet' href='/stylesheets/homepage.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  </head>
+<body>
+	<header><% include ./partials/header %></header>
+	<br><br>
+  <div class="container">
+	<div class="row">
+	<form class="form-horizontal" action = '/savetobidproduct' method = 'post'>
+<fieldset>
+
+<!-- Form Name -->
+<legend>Want to sell something?</legend>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productid">Product ID</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="productid" type="text" class="form-control input-md">
+  
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productname">Product Name</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="productname" type="text" class="form-control input-md">
+   
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productdescription">Product Description</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="productdescription" type="text" class="form-control input-md">
+  
+  </div>
+</div>
+<div class="form-group">
+  <label class="col-md-4 control-label" for="productprice">Base Bid Price</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="productprice" type="text" class="form-control input-md">
+  
+  </div>
+</div>
+
+
+
+
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="category">Category</label>
+  <div class="col-md-4">
+    <select id="selectbasic" name="category" class="form-control">
+      <option value="1">Select a category</option>
+      <option value="2">Women</option>
+      <option value="3">Men</option>
+      <option value="4">Electronics</option>
+      <option value="5">Home Decor</option>
+    </select>
+  </div>
+</div>
+
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="button1id"></label>
+  <div class="col-md-8">
+    <button id="button1id" name="button1id" type="submit" class="btn btn-primary">Add</button>
+    <button id="button2id" name="button2id" class="btn btn-danger">Cancel</button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+
+	</div>
+</div>
+    
+  </body>
+</html>

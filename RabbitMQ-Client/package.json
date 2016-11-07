@@ -1,0 +1,28 @@
+{
+  "name": "RabbitMQ-Client",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "*",
+    "ejs": "*", 
+    "express-session":"*",
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0",
+    "mysql":"*",
+    "mocha": "*",
+    "request":"*",
+    "http":"*",
+    "assert":"*",
+    "winston":"*",
+    "mongodb":"*",
+    "passport":"*",
+    "passport-local":"*",
+    "connect-mongo" :"*"
+  }
+}

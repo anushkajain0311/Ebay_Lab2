@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='Ebay'>
+<head>
+  <title> Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay </title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel='stylesheet' href='/stylesheets/homepage.css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.3.1/angular-ui-router.min.js"></script>
+  <script src='angularjs/homepage1Controller.js'></script>
+  <script src='angularjs/cart.js'></script>
+  <style>
+.panel-b {
+background-color:#fff9f9;}
+  .wrapper{
+  	right: 50px;
+  	position: absolute;
+  }
+  </style>
+  <!-- Add all the angular js controllers-->
+</head>
+<body>
+<div ui-view="header"></div>
+<div ui-view="content"></div>
+<div ui-view="footer"></div>
+</body>
+</html>

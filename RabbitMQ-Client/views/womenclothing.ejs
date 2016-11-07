@@ -1,0 +1,60 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>All Products</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <link rel='stylesheet' href='/stylesheets/homepage.css' />
+  <script src="angularjs/cart.js"></script>
+  
+</head>
+<body ng-app="ebay" ng-controller="addtocart">
+<header><% include ./partials/header %></header>
+
+<div class="container">
+	<br><h1 align="center"> </h1><br>
+	<div class="row" ng-init="getData()">
+		<div class="panel" ng-repeat = "product in productlist">
+	      		<div class="row">
+	      			<div class="col-md-10"><h4> {{product.productname}}</h4></div>
+	      			<div class="col-md-2" ><h4> ${{product.productprice}}</h4></div>
+	      		</div>
+	      		<div class="row">
+	      			<div class="col-md-6"><h5> {{product.productdescription}}</h5> </div>
+	      			<div class="col-md-4"><h5> Quantity Available:{{product.productquantity}}</h5> </div>
+	      			<div class="col-md-2"> <h5>Free Shipping </h5></div>
+			      		
+			    </div>
+			    <div class="row"> 
+			    	<div class="col-md-10"> Seller: {{product.firstname}} {{product.lastname}} shipping from {{product.address}} </div>
+			    	<div class="col-md-2"><button class="btn btn-success btn-md" ng-click="addtocart(product)">Add to Cart</button></div>
+			    </div>
+		</div>
+	
+
+
+		<!--<div class="col-sm-4" align="center" ng-init="getData()">
+		<div class="product-chooser-item align="center"" ng-repeat = "product in productlist" >
+    	<img src="http://renswijnmalen.nl/bootstrap/desktop_mobile.png" class="img-rounded" alt="Mobile and Desktop"	
+      	<h2 ><a href ="/findone"><span>{{product.productname}}</span></a></h2><br>
+    					{{product.productdescription}}<br>
+    				 
+    				{{product.productprice}}<br>
+    				<button ng-click="addtocart(product)">Add to Cart</button><br><br>
+    			</div>
+    			</div>-->
+
+
+
+	    	</div>
+  </div>
+
+  </body>
+  </html>

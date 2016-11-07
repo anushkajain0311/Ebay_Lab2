@@ -1,0 +1,85 @@
+<div ng-controller="getcart">
+<div class="container" ng-init="getcartdata()">
+		<div class="row">
+    		<div class="col-md-12">
+      			<h1>Your eBay Shopping Cart</h1><br><br>
+      		</div>
+    	</div>
+	</div> 
+	<div id="wrapper" >
+		<div class="container">
+			<div class="col-md-9" >
+				
+				<div class="panel panel-b" ng-repeat="item in cartlist">
+		      		<div class="row">
+		      			<div class="col-md-10"><h4 ng-model="itemid"> {{ item.productName}}</h4></div>
+		      			<div class="col-md-2" ><h4 ng-model="price"> ${{ item.productprice}}</h4></div>
+		      		</div>
+		      		<div class="row">
+		      			<div class="col-md-5"><h5> {{item.productDescription}}</h5> </div>
+		      			<div class="col-md-3"><h5> Quantity Available:{{item.productQuantity}}</h5> </div>
+		      			<div class="col-md-2"><input type="number" ng-model="number" min="1" max="{{item.productQuantity}}" ng-change="getvalues(item)" class="form-control text-center" value="1"></div>
+		      			<div class="col-md-2"> <h5>Free Shipping</h5></div>
+				      		
+				    </div><br>
+				    <div class="row"> 
+				    	<div class="col-md-8"> </div>
+				    	<div class="col-md-4"><button class="btn btn-danger btn-md"  ng-click="removeitemfromcart(item)"><i class="fa fa-trash-o">Remove from Cart</i></button>	</div>
+				    	
+				    </div>
+				</div>
+				<div> <a ui-sref="homepage" class="btn btn-default btn-lg"><i class="fa fa-angle-left"></i> Continue Shopping</a></div>
+    				
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+    				<div class="panel-heading"><h4><b>Cart Summary</b></h4></div>
+    				<div class="panel-body" id="totals"><h4><b>Total: {{total}} </b></h4></div>
+    				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click='proceedtocheckout()'>Proceed to Checkout</button>
+  				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	
+	
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+   		 $(".number").change(function(){
+   		 
+   		  value=$(this).closest('tr').find('.number').val();
+   		 //alert(value);
+   		 price=$(this).closest('tr').find(".price").html();
+   		 //alert (price);
+   		 $(".number").prop('disabled',true);
+		$(this).closest('tr').find(".subtotal").html( value * price);
+		$(".number").prop('disabled',false);
+		var total1=parseInt($('#total').html());
+		var total2 =(total1 +parseInt(price));
+		$('#total').html(total2);
+		$('#totals').html(total2);
+		//alert(total1);
+		
+				});
+				
+				
+				
+		window.deleteitem = function(id,price, quantity,thisObj){
+		alert(id);
+		var subtotal=$(".subtotal").html();
+		//alert(subtotal);
+		$.ajax({
+        	url: 'http://localhost:3000/cart',
+        	method:"POST", 
+        	data:{id:id,subtotal:subtotal}, 
+        	success: function(result){
+        		alert(JSON.stringify(result.total));
+        		 $(thisObj).parents("tr:first").remove();
+        		 $("#total").html(result.total);
+        		 }
+        });
+		}
+	});
+	</script>

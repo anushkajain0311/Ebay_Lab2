@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title> My eBay Account</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+   <link rel='stylesheet' href='/stylesheets/homepage.css' />
+  <script src="angularjs/cart.js"></script>
+  <style>
+ 
+.panel-b {
+background-color:#fff9f9;}
+
+
+  .wrapper{
+  	right: 50px;
+  	position: absolute;
+  }
+  </style>
+</head>
+<body ng-app="ebay" ng-controller="getcart">
+<header><% include ./partials/header %></header>
+	<div class="container" ng-init="getcartdata()">
+		<div class="row">
+    		<div class="col-md-12">
+      			<h1>Your eBay Shopping Cart</h1><br><br>
+      		</div>
+    	</div>
+	</div> 
+	<div id="wrapper" >
+		<div class="container">
+			<div class="col-md-9" >
+				
+				<div class="panel panel-b" ng-repeat="user in userlist">
+		      		<div class="row">
+		      			<div class="col-md-10"><h4 ng-model="itemid"> {{ user.itemname}}</h4></div>
+		      			<div class="col-md-2" ><h4 ng-model ="price"> ${{ user.itemprice}}</h4></div>
+		      		</div>
+		      		<div class="row">
+		      			<div class="col-md-5"><h5> {{user.itemdescription}}</h5> </div>
+		      			<div class="col-md-3"><h5> Quantity Available:{{user.itemquantity}}</h5> </div>
+		      			<div class="col-md-2"><input type="number" ng-model="number" min="1" max="{{user.itemquantity}}" ng-change="getvalues(user)" class="form-control text-center" value="1"></div>
+		      			<div class="col-md-2"> <h5>Free Shipping </h5></div>
+				      		
+				    </div><br>
+				    <div class="row"> 
+				    	<div class="col-md-8"> </div>
+				    	<div class="col-md-4"><button class="btn btn-danger btn-md"  ng-click="removeitemfromcart(user)"><i class="fa fa-trash-o">Remove from Cart</i></button>	</div>
+				    	
+				    </div>
+				</div>
+				<div> <a href="/homepage1" class="btn btn-default btn-lg"><i class="fa fa-angle-left"></i> Continue Shopping</a></div>
+    				
+			</div>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+    				<div class="panel-heading"><h4><b>Cart Summary</b></h4></div>
+    				<div class="panel-body" id="totals"><h4><b>Total: {{total}} </b></h4></div>
+    				<button type="button" class="btn btn-primary btn-lg btn-block" ng-click='proceedtocheckout()'>Proceed to Checkout</button>
+  				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	
+
+	<script type="text/javascript">
+	$(document).ready(function(){
+		
+   		 $(".number").change(function(){
+   		 
+   		  value=$(this).closest('tr').find('.number').val();
+   		 //alert(value);
+   		 price=$(this).closest('tr').find(".price").html();
+   		 //alert (price);
+   		 $(".number").prop('disabled',true);
+		$(this).closest('tr').find(".subtotal").html( value * price);
+		$(".number").prop('disabled',false);
+		var total1=parseInt($('#total').html());
+		var total2 =(total1 +parseInt(price));
+		$('#total').html(total2);
+		$('#totals').html(total2);
+		//alert(total1);
+		
+				});
+				
+				
+				
+		window.deleteitem = function(id,price, quantity,thisObj){
+		alert(id);
+		var subtotal=$(".subtotal").html();
+		//alert(subtotal);
+		$.ajax({
+        	url: 'http://localhost:3000/cart',
+        	method:"POST", 
+        	data:{id:id,subtotal:subtotal}, 
+        	success: function(result){
+        		alert(JSON.stringify(result.total));
+        		 $(thisObj).parents("tr:first").remove();
+        		 $("#total").html(result.total);
+        		 }
+        });
+		}
+	});
+				
+		/*$(".delete").click(function(){
+    	proid=$(this).closest('tr').find('.id').html();
+    	//alert(proid);
+        $.ajax({
+        url: 'http://localhost:3000/cart',
+        method:"POST", 
+        data:{id:proid}, 
+        success: function(result){
+        
+	        if(result.data){
+	        alert(result.data);
+	        }
+	        }
+        });
+   });*/
+	</script>
+	</body>
+	</html>
+	
